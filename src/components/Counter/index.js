@@ -5,6 +5,9 @@ class Counter extends Component {
         const { increment, incrementIfOdd, incrementAsync, decrement, counter } = this.props;
         return (
             <div className="panel panel-default">
+            <div className="page-header">
+                   <h3>Game Setup</h3>
+                   </div>
                 <div className="panel-body">
                     <p>Clicked: <span className="badge">{counter}</span> times</p>
                     <div className="btn-group">

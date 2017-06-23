@@ -18,7 +18,7 @@
   "license": "MIT",
   "authors": [
     "Scarlett Ashley L"
-  ],
+],
   "devDependencies": {
     "autoprefixer": "6.3.1",
     "babel-core": "^6.4.5",

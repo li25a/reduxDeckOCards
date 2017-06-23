@@ -12,8 +12,6 @@ export class Header extends Component {
                         <a className="navbar-brand" href="">Deck O Cards</a>
                     </div>
                     <div className="collapse navbar-collapse">
-                        <ul className="nav navbar-nav">s
-                        </ul>
                     </div>
                 </div>
             </nav>
