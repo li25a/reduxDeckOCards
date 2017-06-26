@@ -3,7 +3,8 @@ import _ from 'lodash';
 
 const initialState ={
   deck : [],
-  dealt: []
+  dealtCards: [],
+  dealt:{}
 } ;
 
 //export function setInitialState=()=>(
@@ -34,11 +35,11 @@ console.log('state beginning: ',state);
       return state + 1;
 
     case Type.DEAL:
-      console.log ('deck action');
-      state.dealt.push(state.deck.pop());
+      state.dealtCards.push(state.deck.pop());
       console.log ('deckset length after deal', state.deck.length);
-      console.log ('dealt', state.dealt);
-      console.log (' just dealth', _.last(state.dealt));
+      console.log ('dealt', state.dealtCards);
+      state.dealt =  _.last(state.dealtCards);
+      console.log (' just dealt', state.dealt);
       return state;
 
     default:
