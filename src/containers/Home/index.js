@@ -18,7 +18,7 @@ const metaData = {
 @connect(
     state => ({
         counter: state.counter,
-        deck: state.deckSet
+        deck: state.deck
     }),
     //dispatch => bindActionCreators(CounterActions, dispatch)
     //  dispatch => bindActionCreators(DeckActions, dispatch)
