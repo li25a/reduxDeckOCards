@@ -13,8 +13,6 @@ class Counter extends Component {
                     <div className="btn-group">
                         <button className="btn btn-default" onClick={increment}>+</button>
                         <button className="btn btn-default" onClick={decrement}>-</button>
-                        <button className="btn btn-default" onClick={incrementIfOdd}>Increment if odd</button>
-                        <button className="btn btn-default" onClick={() => incrementAsync()}>Increment async</button>
                     </div>
                 </div>
             </div>
