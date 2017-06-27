@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import  Modal  from 'react-modal';
+//import { styles } from './styles.scss';
+import './styles.scss';
 
 const customStyles = {
   content : {
@@ -16,60 +18,68 @@ const customStyles = {
 class Deck extends Component {
   constructor(props){
     super(props);
-      this.state = {
-        modalIsOpen: false,
-        revealedDealt: {
-          suit: " ",
-          value: " "
-        }
-      };
+    this.state = {
+      modalIsOpen: false,
+      revealedSuit: this.props.deck.dealt.suit,
+      revealedRank: this.props.deck.dealt.value,
+    };
 
-      this.openModal = this.openModal.bind(this);
-      this.afterOpenModal = this.afterOpenModal.bind(this);
-      this.closeModal = this.closeModal.bind(this);
-    }
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
 
-    openModal() {
-        const { dealt } = this.props;
-          console.log ("deal in openModal", dealt, "this.props", this.props, "state", this.state);
-      this.setState({ revealedDealt: dealt })
-      console.log ("revealedDealt", this.state.revealedDealt);
-      this.setState({modalIsOpen: true});
-    }
+  openModal() {
+    const { dealt } = this.props;
+    //console.log ("deal in openModal", dealt, "this.props", this.props, "state", this.state);
+    this.setState({ revealedDealtSuit:   this.props.deck.dealt.suit });
+    this.setState({ revealedDealtRank:   this.props.deck.dealt.value })
+    console.log ("revealedDealt", this.state.revealedDealtSuit);
+    this.setState({ modalIsOpen: true });
+  }
 
-    afterOpenModal() {
-      // references are now sync'd and can be accessed.
-      this.subtitle.style.color = '#f00';
-    }
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
 
-    closeModal() {
-      this.setState({modalIsOpen: false});
-    }
-
+  closeModal() {
+    this.setState({modalIsOpen: false});
+  }
 
     render() {
       console.log("this.props", this.props);
         const { deck, deal, dealt, shuffle } = this.props;
         return (
           <div className="container">
-                 <p>Clicked: <span className="badge">{" x "}</span> times</p>
-                 <div className="btn-group">
-                     <button className="btn btn-default" onClick={ shuffle }>+shuffle+</button>
-                     <button className="btn btn-default" onClick={ deal  }>-deal-</button>
-                     <button className="btn btn-default" onClick={ this.openModal }>-reveal dealt cardl-</button>
-                 </div>
+            <div className="buttons">
+              <div>
+               <button className="btn btn-default" onClick={ shuffle  } >+shuffle+</button>
+              </div>
+              <div>
+               <button className="btn btn-default" onClick={ deal  } >-deal-</button>
+              </div>
+              <div>
+               <button className="btn btn-default" onClick={ this.openModal } >-reveal dealt card-</button>
+              </div>
+            </div>
+
+
+
+
 
                  <Modal
-                 isOpen={this.state.modalIsOpen}
-                 onAfterOpen={this.afterOpenModal}
-                 onRequestClose={this.closeModal}
-                  style={customStyles}
+                 style={customStyles}
+                 isOpen={ this.state.modalIsOpen }
+                 onAfterOpen={ this.afterOpenModal }
+                 onRequestClose={ this.closeModal }
                  contentLabel="Example Modal"
                >
                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+                   <div> { this.state.revealedDealtSuit } </div>
+                   <div> { this.state.revealedDealtValue } </div>
                    <button onClick={this.closeModal}>close</button>
 
-                   <div>{ dealt }</div>
                </Modal>
             </div>
 
@@ -79,36 +89,9 @@ class Deck extends Component {
 }
 
 Deck.propTypes = {
-  deal       : PropTypes.func.isRequired,
-  //dealt      : PropTypes.object.isRequired,
+  deal    : PropTypes.func.isRequired,
   shuffle    : PropTypes.func.isRequired,
-  deck       : PropTypes.array.isRequired
+  deck       : PropTypes.object.isRequired
 };
 
 export default Deck;
-
-// import React, { Component, PropTypes } from 'react';
-//
-// class Deck extends Component {
-//     render() {
-//         const { shuffle, deal, deck } = this.props;
-//         return (
-//           <div className="container">
-//                 <p>Clicked: <span className="badge">{" x "}</span> times</p>
-//                 <div className="btn-group">
-//                     <button className="btn btn-default" onClick={shuffle}>+shuffle+</button>
-//                     <button className="btn btn-default" onClick={deal}>-deal-</button>
-//                 </div>
-//               </div>
-//         );
-//     }
-// }
-//
-// Deck.propTypes = {
-//   increment     : PropTypes.func.isRequired,
-//   //shuffle     : PropTypes.func.isRequired,
-//     deal     : PropTypes.func.isRequired,
-//     deck       : PropTypes.array.isRequired
-// };
-//
-// export default Deck;

@@ -6,7 +6,6 @@ import DocumentMeta from 'react-document-meta';
 import Counter from 'components/Counter';
 import Deck from 'components/Deck';
 
-
 import * as CounterActions from 'actions/counter';
 import * as DeckActions from 'actions/deck';
 
@@ -15,13 +14,15 @@ const metaData = {
     title: 'About'
 };
 
+const mapStateToProps = ({ reducer1, reducer2}) =>
+    ({reducer1, reducer2 });
+
 @connect(
     state => ({
         counter: state.counter,
         deck: state.deck,
         dealt: state.dealt
     }),
-    //dispatch => bindActionCreators(CounterActions, dispatch)
     //  dispatch => bindActionCreators(DeckActions, dispatch)
     dispatch => bindActionCreators(_.assign({}, CounterActions, DeckActions), dispatch)
 )

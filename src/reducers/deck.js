@@ -28,6 +28,7 @@ export default function deck(state = initialState, action){
         state.dealt =  _.last(state.dealtCards);
         console.log (' just dealt', state.dealt);
       }
+        console.log (' just dealt2', state.dealt);
         return state;
 
     default:
