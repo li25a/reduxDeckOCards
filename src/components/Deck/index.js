@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import  Modal  from 'react-modal';
-//import { styles } from './styles.scss';
 import './styles.scss';
 
 const customStyles = {
@@ -11,7 +10,7 @@ const customStyles = {
     right                 : 'auto',
     bottom                : 'auto',
     marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+    transform             : 'translate(-50%, -50%)',
   }
 };
 
@@ -20,36 +19,27 @@ class Deck extends Component {
     super(props);
     this.state = {
       modalIsOpen: false,
-      revealedSuit: this.props.deck.dealt.suit,
-      revealedRank: this.props.deck.dealt.value,
+      revealedDealtSuit: this.props.deck.dealt.suit,
+      revealedDealtRank: this.props.deck.dealt.rank,
     };
 
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
 
   openModal() {
     const { dealt } = this.props;
-    //console.log ("deal in openModal", dealt, "this.props", this.props, "state", this.state);
     this.setState({ revealedDealtSuit:   this.props.deck.dealt.suit });
-    this.setState({ revealedDealtRank:   this.props.deck.dealt.value })
-    console.log ("revealedDealt", this.state.revealedDealtSuit);
+    this.setState({ revealedDealtRank:   this.props.deck.dealt.rank });
     this.setState({ modalIsOpen: true });
   }
 
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.subtitle.style.color = '#f00';
-  }
-
   closeModal() {
-    this.setState({modalIsOpen: false});
+    this.setState({ modalIsOpen: false });
   }
 
     render() {
-      console.log("this.props", this.props);
-        const { deck, deal, dealt, shuffle } = this.props;
+        const { deck, deal, shuffle } = this.props;
         return (
           <div className="container">
             <div className="buttons">
@@ -64,32 +54,23 @@ class Deck extends Component {
               </div>
             </div>
 
-
-
-
-
-                 <Modal
-                 style={customStyles}
-                 isOpen={ this.state.modalIsOpen }
-                 onAfterOpen={ this.afterOpenModal }
-                 onRequestClose={ this.closeModal }
-                 contentLabel="Example Modal"
-               >
-                   <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-                   <div> { this.state.revealedDealtSuit } </div>
-                   <div> { this.state.revealedDealtValue } </div>
-                   <button onClick={this.closeModal}>close</button>
-
-               </Modal>
-            </div>
-
-
+           <Modal
+           style={customStyles}
+           isOpen={ this.state.modalIsOpen }
+           onRequestClose={ this.closeModal }
+           contentLabel="Example Modal"
+           >
+             <div> <p>{ this.state.revealedDealtSuit } </p> </div>
+             <div> <p> { this.state.revealedDealtRank } </p></div>
+             <button className="btn btn-default" onClick={this.closeModal}>close</button>
+         </Modal>
+      </div>
         );
     }
 }
 
 Deck.propTypes = {
-  deal    : PropTypes.func.isRequired,
+  deal       : PropTypes.func.isRequired,
   shuffle    : PropTypes.func.isRequired,
   deck       : PropTypes.object.isRequired
 };

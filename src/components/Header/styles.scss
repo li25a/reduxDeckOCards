@@ -1,24 +1,13 @@
-// :local(.styles) {
-//     .logo {
-//         a {
-//             font-weight: bold;
-//         }
-//     }
-//
-//     .nav {
-//         a.active {
-//             background-color: #080808;
-//             color: #fff;
-//             font-weight: bold;
-//         }
-//         a.active:hover, a.active:focus {
-//             background-color: #080808;
-//         }
-//     }
-// }
+.nav {
+  a{
+    font-size: 30em;
+    //  margin-left: 50%;
+      font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
+  line-height: 1.5;
+  font-size: 15px;
+  font-weight: 400;
+  font-color: white;
+  }
 
-.navbar-brand {
-  font-size: 30em;
-    margin-left: 50%;
 
 }

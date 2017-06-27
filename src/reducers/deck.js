@@ -23,12 +23,11 @@ export default function deck(state = initialState, action){
     case Type.DEAL:
       if (state.deck.length > 0){
         state.dealtCards.push(state.deck.pop());
-        console.log ('deck length after deal', state.deck.length);
-        console.log ('dealt', state.dealtCards);
+        //console.log ('deck length after deal', state.deck.length);
+        console.log ('dealt cards', state.dealtCards);
         state.dealt =  _.last(state.dealtCards);
         console.log (' just dealt', state.dealt);
       }
-        console.log (' just dealt2', state.dealt);
         return state;
 
     default:
@@ -40,7 +39,7 @@ export default function deck(state = initialState, action){
           _.each (ranks, function(rank){
             setInit.push({
               suit: suit,
-              value: rank
+              rank: rank
             });
           });
         });
