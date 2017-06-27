@@ -18,7 +18,8 @@ const metaData = {
 @connect(
     state => ({
         counter: state.counter,
-        deck: state.deck
+        deck: state.deck,
+        dealt: state.dealt
     }),
     //dispatch => bindActionCreators(CounterActions, dispatch)
     //  dispatch => bindActionCreators(DeckActions, dispatch)
@@ -34,7 +35,6 @@ export class Home extends Component {
         return (
             <div>
                 <DocumentMeta {...metaData} />
-                <Counter {...this.props} />
                 <Deck {...this.props} />
             </div>
         );

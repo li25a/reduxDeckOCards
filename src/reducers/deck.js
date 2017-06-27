@@ -44,7 +44,7 @@ export default function deck(state = initialState, action){
           });
         });
         state.deck = setInit;
-        console.log("set deck", state);
+        console.log("state", state);
       }
     return state;
   }
