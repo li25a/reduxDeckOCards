@@ -28,6 +28,9 @@ export default function deck(state = initialState, action){
         state.dealt =  _.last(state.dealtCards);
         console.log (' just dealt', state.dealt);
       }
+      else{
+        console.log ('out of cards to deal!');
+      }
         return state;
 
     default:
